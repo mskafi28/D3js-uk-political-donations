@@ -36,10 +36,17 @@
 <body>
 
     <header role="banner" id="title">
-        <h1>Who's funding the big three?</h1>
+        <h1 class=zoom>Who's funding the big three?</h1>
+     
+     <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+     
+     <script>
+        var bs = new Audio();
+        bs.src = "Click.mp3";
+    </script>
     </header>
-    <nav role="navigation">
-        <ul>
+    <nav class=zoom role="navigation">
+        <ul onmousedown="bs.play()">
             <li><a href="#" role="button" class="pure-button switch" id="all-donations">All money</a>
             </li>
             <li><a href="#" role="button" class="pure-button switch" id="group-by-money-source">The public's purse</a>
@@ -47,6 +54,8 @@
             <li><a href="#" role="button" class="pure-button switch" id="group-by-party">Split by party</a>
             </li>
             <li><a href="#" role="button" class="pure-button switch" id="group-by-donor-type">Split by type of donor</a>
+            </li>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-donation-amount">Split by the amount of the donation</a>
             </li>
         </ul>
     </nav>
