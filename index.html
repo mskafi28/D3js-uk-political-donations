@@ -32,6 +32,26 @@
     </script>
 </head>
 <!-- Add feature detection and noscript -->
+    
+    <style type="text/css">
+        
+    .zoom {
+   -webkit-transition: all .3s ease-out;
+   -moz-transition: all .3s ease-out;
+   -o-transition: all .3s ease-out;
+   transition: all .3s ease-out;
+}
+.zoom:hover {
+   -moz-transform: scale(1.6);
+   -webkit-transform: scale(1.6);
+   -o-transform: scale(1.6);
+   transform: scale(1.6);
+   -ms-transform: scale(1.6);
+filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',
+   M11=2, M12=-0, M21=0, M22=2);}
+   
+        
+</style>
 
 <body>
     
@@ -49,9 +69,9 @@
     </header>
     <nav role="navigation">
         <ul onmousedown="bs.play()">
-            <li><a href="#" role="button" class="pure-button switch" id="all-donations">All money</a>
+            <li><a href="#" role="button" class="pure-button switch" id="all-donations"><p class=zoom>All money</a>
             </li>
-            <li><a href="#" role="button" class="pure-button switch" id="group-by-money-source">The public's purse</a>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-money-source"><p class=zoom>The public's purse</a>
             </li>
             <li><a href="#" role="button" class="pure-button switch" id="group-by-party"><p class=zoom>Split by party</a>
             </li>
