@@ -37,12 +37,16 @@ li {
 
 /* View containers */
 #initial-content, #view-source-type {
-      left: 650px;
-      width: 400px; 
+      /* left: 650px; */
+      /* width: 400px; */
+      left: 800px;
+      width: 800px;
 }
 #view-party-type {
-    left: 650px;
-    width: 272px;
+    /* left: 650px; */
+    /* width: 272px; */
+    left: 800px;
+    width: 800px;
 }
 
 /*  Public or private funds view */
@@ -51,10 +55,8 @@ li {
     max-width: 300px;
 }
 #public-or-private-money-split {
-    /* top: 550px; */
-    /* left: -600px;*/
-    top: 800px;
-    left: -800px;
+    top: 550px; 
+    left: -600px;
     text-align: center;   
 }
 #private-money, #public-money {
