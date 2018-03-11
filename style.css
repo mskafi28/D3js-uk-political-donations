@@ -37,8 +37,10 @@ li {
 
 /* View containers */
 #initial-content, #view-source-type {
-    left: 650px;
-    width: 400px;
+    /*left: 650px; */
+    /* width: 400px; */
+    left: 800px;
+    width: 800px;
 }
 #view-party-type {
     left: 650px;
