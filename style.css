@@ -43,10 +43,9 @@ li {
       width: 800px;
 }
 #view-party-type {
-    /* left: 650px; */
-    /* width: 272px; */
-    left: 800px;
-    width: 800px;
+    left: 650px; 
+    width: 272px; 
+    
 }
 
 /*  Public or private funds view */
