@@ -37,10 +37,9 @@ li {
 
 /* View containers */
 #initial-content, #view-source-type {
-      /* left: 650px; */
-      /* width: 400px; */
-      left: 800px;
-      width: 800px;
+      left: 650px; 
+      width: 400px; 
+      
 }
 #view-party-type {
     left: 650px; 
@@ -71,15 +70,15 @@ li {
 /*  Party view */
 #conservative, #labour, #libdem { padding: 10px; }
 #conservative {
-    background: #8C8C8C;
+    background:  rgba(62, 88, 89, 1);
     top: 110px;
 }
 #labour {
-    background: #8C8C8C;
+    background: rgba(136, 253, 58, 1);
     top: 330px;
 }
 #libdem {
-    background: #8C8C8C;
+     background: rgba(277, 80, 34, 0.5);
     top: 550px;
 }
 
@@ -160,16 +159,16 @@ circle.active {
     margin: 0.2em;
 }
 .lab {
-    fill: #BD1E1E;
+    fill:  #F02233;
 }
 .lib {
-    fill: #BD1E1E;
+    fill: #FDBB30;
 }
 .con {
-    fill: #BD1E1E;
+    fill: #087FBD;
 }
 .snp {
-    fill: #BD1E1E;
+    fill: #C9C945;
 }
 /*!
 Pure v0.2.1
