@@ -9,7 +9,7 @@ var radius = d3.scale.sqrt().range([10, 20]);
 var partyCentres = { 
     con: { x: w / 3, y: h / 3.3}, 
     lab: {x: w / 3, y: h / 2.3}, 
-    lib: {x: w / 3	, y: h / 1.8}
+    lib: {x: w / 3, y: h / 1.8}
   };
 
 var entityCentres = { 
