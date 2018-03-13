@@ -76,17 +76,17 @@ li {
 #conservative {
     background:  rgb(102,102,102);
     top: 110px;
-    left: 75px;
+    left: 65px;
 }
 #labour {
     background: rgb(180,66,66);
     top: 330px;
-    left: 75px;
+    left: 65px;
 }
 #libdem {
      background: rgb(180,179,179);
     top: 550px;
-    left: 75px;
+    left: 65px;
 }
 
 /*	Donor type layout */
