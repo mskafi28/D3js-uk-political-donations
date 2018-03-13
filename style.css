@@ -54,10 +54,9 @@ li {
 }
 #public-or-private-money-split {
     
-    /*left: -600px; */
-    /*text-align: center;  */
     top: 550px; 
-    left: -500px;
+    left: -600px;
+    text-align: center;
       
 }
 #private-money, #public-money {
