@@ -71,13 +71,15 @@ li {
 }
 
 /*  Party view */
+
+/* Orismos xromatos sta koutakia stin epilogi split by party */
 #conservative, #labour, #libdem { padding: 10px; }
 #conservative {
     background:  rgb(102,102,102);
     top: 110px;
 }
 #labour {
-    background: rgb(195,52,52);
+    background: rgb(180,66,66);
     top: 330px;
 }
 #libdem {
