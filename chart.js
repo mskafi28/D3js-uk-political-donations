@@ -351,7 +351,7 @@ function mouseover(d, i) {
 	
 	
 	var donatorsname = new SpeechSynthesisUtterance("Donator's name is " + donor + " and the donation amount is " + amount + " pounds");
-	window.speechSynthesis.speak(voice);
+	window.speechSynthesis.speak(donatorsname);
 	
 	
 	}
