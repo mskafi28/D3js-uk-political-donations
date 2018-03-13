@@ -34,8 +34,11 @@ li {
 
 /* View containers */
 #initial-content, #view-source-type {
-      left: 650px; 
-      width: 400px; 
+      /*left: 650px; */
+      /*width: 400px; */
+    
+     left: 750px;
+     width: 400px
       
 }
 #view-party-type {
@@ -50,9 +53,12 @@ li {
     max-width: 300px;
 }
 #public-or-private-money-split {
+    
+    /*left: -600px; */
+    /*text-align: center;  */
     top: 550px; 
-    left: -600px;
-    text-align: center;   
+    left: -500px;
+      
 }
 #private-money, #public-money {
     width: 200px;
