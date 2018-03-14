@@ -69,14 +69,14 @@ function transition(name) {
 		$("#view-donor-type").fadeIn(1000);
 		return donorType();
 	}
-	if (name === "group-by-money-source") {
+	if (name === "group-by-money-source")
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
 		return fundsType();
-
+	}
 
 function start() {
 
@@ -145,7 +145,6 @@ function fundsType() {
 		.on("tick", types)
 		.start();
 }
-
 
 function parties(e) {
 	node.each(moveToParties(e.alpha));
@@ -246,8 +245,6 @@ function moveToFunds(alpha) {
 	};
 }
 
-
-	
 // Collision detection function by m bostock
 function collide(alpha) {
   var quadtree = d3.geom.quadtree(nodes);
@@ -361,9 +358,6 @@ function mouseover(d, i) {
 
 function mouseout() {
 	// no more tooltips
-		// otan o xristis den akoumpaei pia se kapoia mpala tote stamataei na akougetai to onoma tou doriti ktl
-		// window.speechSynthesis.cancel();
-	
 		var mosie = d3.select(this);
 
 		mosie.classed("active", false);
@@ -380,5 +374,6 @@ $(document).ready(function() {
     return d3.csv("data/7500up.csv", display);
 
 });
+
 
 
