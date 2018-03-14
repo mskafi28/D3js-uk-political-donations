@@ -50,6 +50,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
+		$("#view-amount-type").fadeOut(250);
 		return total();
 		//location.reload();
 	}
@@ -286,18 +287,22 @@ function moveToFunds(alpha) {
 
 // !!!
 
-function moveToAmount(alpha) {
+function moveToAmounts(alpha) {
 	return function(d) {
-		
-		if (d.value <= 50000) { 
+		var centreY = entityCentres[d.entity].y;
+		var centreX = entityCentres[d.entity].x;
+		if (d.value <= 25000) { 
 			centreX = svgCentre.x ;
-			centreY = svgCentre.y -50;
-		} else if (d.value <= 350000) { 
+			centreY = svgCentre.y;
+		} else if (d.value <= 250000) { 
 			centreX = svgCentre.x + 150;
-			centreY = svgCentre.y ;
-		} else if (d.value <= 20000000){ 
+			centreY = svgCentre.y;
+		} else if (d.value <= 9999999){ 
 			centreX = svgCentre.x + 300;
-			centreY = svgCentre.y + 50;
+			centreY = svgCentre.y;
+		}else{
+			centreX = svgCentre.x + 450;
+			centreY = svgCentre.y;
 		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
