@@ -69,7 +69,7 @@ function transition(name) {
 		$("#view-donor-type").fadeIn(1000);
 		return donorType();
 	}
-	if (name === "group-by-money-source") {
+	if (name === "group-by-money-source")
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
@@ -77,20 +77,6 @@ function transition(name) {
 		$("#view-source-type").fadeIn(1000);
 		return fundsType();
 	}
-
-	// Nea katigoria "Split by amount of donation" 
-
-	if (name === "group-by-amount") {
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeIn(1000);
-		$("#view-amount-type").fadeIn(250);
-		return amount();
-	}
-	
-}
 
 function start() {
 
@@ -160,17 +146,6 @@ function fundsType() {
 		.start();
 }
 
-// sinartisi gia ti nea katigoria
-
-function amountType() {
-	force.gravity(0)
-		.friction(0.85)
-		.charge(function(d) { return -Math.pow(d.radius, 2) / 2.5; })
-		.on("tick", amounts)
-		.start();
-}
-
-
 function parties(e) {
 	node.each(moveToParties(e.alpha));
 
@@ -196,15 +171,6 @@ function types(e) {
 function all(e) {
 	node.each(moveToCentre(e.alpha))
 		.each(collide(0.001));
-
-		node.attr("cx", function(d) { return d.x; })
-			.attr("cy", function(d) {return d.y; });
-}
-
-// sinartisi gia ti nea katigoria
-
-function amounts(e) {
-	node.each(moveToAmount(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
@@ -279,29 +245,6 @@ function moveToFunds(alpha) {
 	};
 }
 
-// !!! optikopoiisi neas katigorias
-
-function moveToAmount(alpha) {
-	return function(d) {
-		
-		if (d.value <= 50000) { 
-			centreX = svgCentre.x ;
-			centreY = svgCentre.y -50;
-		} else if (d.value <= 350000) { 
-			centreX = svgCentre.x + 150;
-			centreY = svgCentre.y ;
-		} else if (d.value <= 20000000){ 
-			centreX = svgCentre.x + 300;
-			centreY = svgCentre.y + 50;
-		}
-
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	};
-}
-
-
-	
 // Collision detection function by m bostock
 function collide(alpha) {
   var quadtree = d3.geom.quadtree(nodes);
@@ -415,9 +358,6 @@ function mouseover(d, i) {
 
 function mouseout() {
 	// no more tooltips
-		// otan o xristis den akoumpaei pia se kapoia mpala tote stamataei na akougetai to onoma tou doriti ktl
-		// window.speechSynthesis.cancel();
-	
 		var mosie = d3.select(this);
 
 		mosie.classed("active", false);
