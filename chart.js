@@ -69,7 +69,7 @@ function transition(name) {
 		$("#view-donor-type").fadeIn(1000);
 		return donorType();
 	}
-	if (name === "group-by-money-source")
+	if (name === "group-by-money-source") {
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
@@ -80,7 +80,7 @@ function transition(name) {
 
 	// Nea katigoria "Split by amount of donation" 
 
-	if (name === "group-by-amount")
+	if (name === "group-by-amount") {
 		$("#initial-content").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
@@ -278,30 +278,8 @@ function moveToFunds(alpha) {
 
 // !!! optikopoiisi neas katigorias
 
-function moveToAmount(alpha) {
-	return function(d) {
-		var centreX = svgCentre.x + 75;
-			if (d.value <= 25001) {
-				centreY = svgCentre.y + 75;
-			} else if (d.value <= 50001) {
-				centreY = svgCentre.y + 55;
-			} else if (d.value <= 100001) {
-				centreY = svgCentre.y + 35;
-			} else  if (d.value <= 500001) {
-				centreY = svgCentre.y + 15;
-			} else  if (d.value <= 1000001) {
-				centreY = svgCentre.y - 5;
-			} else  if (d.value <= maxVal) {
-				centreY = svgCentre.y - 25;
-			} else {
-				centreY = svgCentre.y;
-			}
 
-		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
-		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
-	};
-}
-
+	
 // Collision detection function by m bostock
 function collide(alpha) {
   var quadtree = d3.geom.quadtree(nodes);
