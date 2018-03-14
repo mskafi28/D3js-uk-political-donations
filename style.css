@@ -156,6 +156,38 @@ li {
     right: 0
 }
 
+
+/* !!!!!!!!!!! */
+
+#view-by-amount-of-donation {
+    display: none; /* page on load */
+    position: absolute;
+    text-align: center;
+    margin: 0;
+}
+#view-by-amount-of-donation-title {
+    position: absolute;
+    width: 500px;
+    left: 16vw;
+}
+#first-amount-interval, #second-amount-interval, #third-amount-interval {
+    position: absolute;
+    top: 520px;
+}
+#first-amount-interval {
+    left: 10vw;
+}
+#second-amount-interval {
+    left: 26vw;
+}
+#third-amount-interval {
+    left: 45vw;
+}
+
+
+/* - !!!!!!!!!!! - */
+
+
 /* Value scale */
 
 #value-scale {
