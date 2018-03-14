@@ -86,6 +86,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
+		$("#view-amount-type").fadeIn(250);
 		return amount();
 	}
 
