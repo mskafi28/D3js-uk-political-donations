@@ -1,5 +1,5 @@
 body {
-    background-color: #ffffff;
+    background-color: #D3D3D3;
     font-family:'Raleway', 'Open Sans', sans-serif;
 }
 p {
@@ -8,9 +8,23 @@ p {
 strong {
     font-weight: 700;
 }
-h1, h2, h3, h4, h5 {
+h1, h2, h4, h5, h6 {
     margin: 10px 0 15px 0;
 }
+
+h3 {
+    position: relative;
+    left: 20px;
+    top: 5px;
+}
+
+
+h5 {
+    left:800px;
+    width:260px;    
+}
+
+
 header, nav {
     text-align: center;
     min-width: 767px;
@@ -32,12 +46,17 @@ li {
 
 /* View containers */
 #initial-content, #view-source-type {
-    left: 650px;
-    width: 400px;
+      /*left: 650px; */
+      /*width: 400px; */
+    
+     left: 750px;
+     width: 400px;
+      
 }
 #view-party-type {
-    left: 650px;
-    width: 272px;
+    left: 650px; 
+    width: 272px; 
+    
 }
 
 /*  Public or private funds view */
@@ -46,33 +65,40 @@ li {
     max-width: 300px;
 }
 #public-or-private-money-split {
-    top: 550px;
+    
+    top: 550px; 
     left: -600px;
-    text-align: center;   
+    text-align: center;
+      
 }
 #private-money, #public-money {
     width: 200px;
 }
 #private-money {
-    left: 200px;
+    left: 65px;
 }
 #public-money {
-    left: 610px;
+    left: 460px;
 }
 
 /*  Party view */
+
+/* Orismos xromatos sta koutakia stin epilogi split by party */
 #conservative, #labour, #libdem { padding: 10px; }
 #conservative {
-    background: rgba(8, 127, 189, 0.2);
-    top: 110px;
+    background:  rgb(102,102,102);
+    top: 100px;
+    left: 50px;
 }
 #labour {
-    background: rgba(240, 34, 51, 0.2);
-    top: 330px;
+    background: rgb(189,89,89);
+    top: 350px;
+    left: 50px;
 }
 #libdem {
-    background: rgba(253, 187, 48, 0.2);
-    top: 550px;
+     background: rgb(180,179,179);
+    top: 590px;
+    left: 50px;
 }
 
 /*	Donor type layout */
@@ -152,7 +178,7 @@ circle.active {
     margin: 0.2em;
 }
 .lab {
-    fill: #F02233;
+    fill:  #F02233;
 }
 .lib {
     fill: #FDBB30;
