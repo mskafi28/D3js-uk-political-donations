@@ -362,7 +362,7 @@ function mouseover(d, i) {
 function mouseout() {
 	// no more tooltips
 		// otan o xristis den akoumpaei pia se kapoia mpala tote stamataei na akougetai to onoma tou doriti ktl
-		window.speechSynthesis.cancel();
+		// window.speechSynthesis.cancel();
 	
 		var mosie = d3.select(this);
 
