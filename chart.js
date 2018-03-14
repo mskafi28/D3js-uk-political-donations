@@ -359,8 +359,6 @@ function mouseover(d, i) {
 function mouseout() {
 	// no more tooltips
 		var mosie = d3.select(this);
-		window.speechSynthesis.cancel();
-
 		mosie.classed("active", false);
 
 		d3.select(".tooltip")
