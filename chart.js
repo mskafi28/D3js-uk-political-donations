@@ -18,7 +18,7 @@ var entityCentres = {
 		other: {x: w / 1.15, y: h / 1.9},
 		society: {x: w / 1.12, y: h  / 3.2 },
 		pub: {x: w / 1.8, y: h / 2.8},
-		individual: {x: w / 3.65, y: h / 3.3},
+		individual: {x: w / 3.65, y: h / 3.3}
 	};
 
 // allagi color scale stis mpales
@@ -59,6 +59,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
+		$("#view-amount-type").fadeOut(250);
 		return partyGroup();
 	}
 	if (name === "group-by-donor-type") {
@@ -67,6 +68,7 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
+		$("#view-amount-type").fadeOut(250);
 		return donorType();
 	}
 	if (name === "group-by-money-source")
@@ -75,6 +77,7 @@ function transition(name) {
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
+		$("#view-amount-type").fadeOut(250);
 		return fundsType();
 	}
 
@@ -85,6 +88,7 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(1000);
 		$("#view-amount-type").fadeIn(250);
+		$("#view-amount-type").fadeOut(250);
 		return amountType();
 	}
 }
