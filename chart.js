@@ -89,6 +89,8 @@ function transition(name) {
 		$("#view-amount-type").fadeIn(250);
 		return amount();
 	}
+	
+}
 
 function start() {
 
@@ -162,11 +164,12 @@ function fundsType() {
 
 function amountType() {
 	force.gravity(0)
-		.friction(0.75)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.friction(0.85)
+		.charge(function(d) { return -Math.pow(d.radius, 2) / 2.5; })
 		.on("tick", amounts)
 		.start();
 }
+
 
 function parties(e) {
 	node.each(moveToParties(e.alpha));
@@ -277,6 +280,25 @@ function moveToFunds(alpha) {
 }
 
 // !!! optikopoiisi neas katigorias
+
+function moveToAmount(alpha) {
+	return function(d) {
+		
+		if (d.value <= 50000) { 
+			centreX = svgCentre.x ;
+			centreY = svgCentre.y -50;
+		} else if (d.value <= 350000) { 
+			centreX = svgCentre.x + 150;
+			centreY = svgCentre.y ;
+		} else if (d.value <= 20000000){ 
+			centreX = svgCentre.x + 300;
+			centreY = svgCentre.y + 50;
+		}
+
+		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
+		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+	};
+}
 
 
 	
@@ -394,7 +416,7 @@ function mouseover(d, i) {
 function mouseout() {
 	// no more tooltips
 		// otan o xristis den akoumpaei pia se kapoia mpala tote stamataei na akougetai to onoma tou doriti ktl
-		window.speechSynthesis.cancel();
+		// window.speechSynthesis.cancel();
 	
 		var mosie = d3.select(this);
 
