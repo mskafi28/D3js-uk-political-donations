@@ -9,7 +9,7 @@ var radius = d3.scale.sqrt().range([10, 20]);
 var partyCentres = { 
     con: { x: w / 3, y: h / 3.3}, 
     lab: {x: w / 3, y: h / 2.3}, 
-    lib: {x: w / 3	, y: h / 1.8}
+    lib: {x: w / 3, y: h / 1.8}
   };
 
 var entityCentres = { 
@@ -21,7 +21,9 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
-var fill = d3.scale.ordinal().range(["#F02233", "#087FBD", "#FDBB30"]);
+// allagi color scale stis mpales
+
+var fill = d3.scale.ordinal().range(["#A21313","#000000","#808080"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -76,6 +78,18 @@ function transition(name) {
 		return fundsType();
 	}
 
+	// Nea katigoria "Split by amount of donation" 
+
+	if (name === "group-by-amount")
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeIn(1000);
+		$("#view-amount-type").fadeIn(250);
+		return amount();
+	}
+
 function start() {
 
 	node = nodeGroup.selectAll("circle")
@@ -92,7 +106,9 @@ function start() {
 		.attr("r", 0)
 		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
-		.on("mouseout", mouseout);
+		.on("mouseout", mouseout)
+		// !!! google search the donor !!!
+		.on("click", function(d) { window.open("http://www.google.com/search?q=" + d.donor);});
 		// Alternative title based 'tooltips'
 		// node.append("title")
 		//	.text(function(d) { return d.donor; });
@@ -142,6 +158,16 @@ function fundsType() {
 		.start();
 }
 
+// sinartisi gia ti nea katigoria
+
+function amountType() {
+	force.gravity(0)
+		.friction(0.75)
+		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
+		.on("tick", amounts)
+		.start();
+}
+
 function parties(e) {
 	node.each(moveToParties(e.alpha));
 
@@ -167,6 +193,15 @@ function types(e) {
 function all(e) {
 	node.each(moveToCentre(e.alpha))
 		.each(collide(0.001));
+
+		node.attr("cx", function(d) { return d.x; })
+			.attr("cy", function(d) {return d.y; });
+}
+
+// sinartisi gia ti nea katigoria
+
+function amounts(e) {
+	node.each(moveToAmount(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
@@ -238,6 +273,32 @@ function moveToFunds(alpha) {
 		}
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
+	};
+}
+
+// !!! optikopoiisi neas katigorias
+
+function moveToAmount(alpha) {
+	return function(d) {
+		var centreX = svgCentre.x + 75;
+			if (d.value <= 25001) {
+				centreY = svgCentre.y + 75;
+			} else if (d.value <= 50001) {
+				centreY = svgCentre.y + 55;
+			} else if (d.value <= 100001) {
+				centreY = svgCentre.y + 35;
+			} else  if (d.value <= 500001) {
+				centreY = svgCentre.y + 15;
+			} else  if (d.value <= 1000001) {
+				centreY = svgCentre.y - 5;
+			} else  if (d.value <= maxVal) {
+				centreY = svgCentre.y - 25;
+			} else {
+				centreY = svgCentre.y;
+			}
+
+		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
+		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
 	};
 }
 
@@ -346,10 +407,17 @@ function mouseover(d, i) {
 			.style("display","block");
 	
 	
+	var donatorsname = new SpeechSynthesisUtterance("Donator's name is " + donor + " and the donation amount is " + amount + " pounds");
+	window.speechSynthesis.speak(donatorsname);
+	
+	
 	}
 
 function mouseout() {
 	// no more tooltips
+		// otan o xristis den akoumpaei pia se kapoia mpala tote stamataei na akougetai to onoma tou doriti ktl
+		window.speechSynthesis.cancel();
+	
 		var mosie = d3.select(this);
 
 		mosie.classed("active", false);
@@ -366,5 +434,6 @@ $(document).ready(function() {
     return d3.csv("data/7500up.csv", display);
 
 });
+
 
 
