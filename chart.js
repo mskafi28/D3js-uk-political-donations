@@ -76,19 +76,7 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
 		return fundsType();
-	}
 
-	// Nea katigoria "Split by amount of donation" 
-
-	if (name === "group-by-amount") {
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeIn(1000);
-		$("#view-amount-type").fadeIn(250);
-		return amount();
-	}
 
 function start() {
 
@@ -158,15 +146,6 @@ function fundsType() {
 		.start();
 }
 
-// sinartisi gia ti nea katigoria
-
-function amountType() {
-	force.gravity(0)
-		.friction(0.75)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", amounts)
-		.start();
-}
 
 function parties(e) {
 	node.each(moveToParties(e.alpha));
@@ -193,15 +172,6 @@ function types(e) {
 function all(e) {
 	node.each(moveToCentre(e.alpha))
 		.each(collide(0.001));
-
-		node.attr("cx", function(d) { return d.x; })
-			.attr("cy", function(d) {return d.y; });
-}
-
-// sinartisi gia ti nea katigoria
-
-function amounts(e) {
-	node.each(moveToAmount(e.alpha));
 
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
@@ -275,8 +245,6 @@ function moveToFunds(alpha) {
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
 }
-
-// !!! optikopoiisi neas katigorias
 
 
 	
