@@ -287,22 +287,18 @@ function moveToFunds(alpha) {
 
 // !!!
 
-function moveToAmounts(alpha) {
+function moveToAmount(alpha) {
 	return function(d) {
-		var centreY = entityCentres[d.entity].y;
-		var centreX = entityCentres[d.entity].x;
-		if (d.value <= 25000) { 
+		
+		if (d.value <= 50000) { 
 			centreX = svgCentre.x ;
-			centreY = svgCentre.y;
-		} else if (d.value <= 250000) { 
+			centreY = svgCentre.y -50;
+		} else if (d.value <= 350000) { 
 			centreX = svgCentre.x + 150;
-			centreY = svgCentre.y;
-		} else if (d.value <= 9999999){ 
+			centreY = svgCentre.y ;
+		} else if (d.value <= 20000000){ 
 			centreX = svgCentre.x + 300;
-			centreY = svgCentre.y;
-		}else{
-			centreX = svgCentre.x + 450;
-			centreY = svgCentre.y;
+			centreY = svgCentre.y + 50;
 		}
 
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
@@ -386,6 +382,16 @@ function mouseover(d, i) {
 	var party = d.partyLabel;
 	var entity = d.entityLabel;
 	var offset = $("svg").offset();
+	
+	// !!!!
+	
+	var infoBox = "<p> Source: <b>" + donor + "</b></p>"
+								+ "<p> Recipient: <b>" + party + "</b></p>"
+								+ "<p> Type of donor: <b>" + entity + "</b></p>"
+								+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
+	
+	// - !!!
+	
 	
 
 
