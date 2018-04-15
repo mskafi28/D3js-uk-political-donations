@@ -40,7 +40,7 @@ li {
 }
 
 /* Initial appearance on load */
-#view-party-type, #view-donor-type, #view-source-type {
+#view-party-type, #view-donor-type, #view-source-type, #view-amount-type {
     display: none;
 }
 
@@ -53,7 +53,7 @@ li {
      width: 400px;
       
 }
-#view-party-type {
+#view-party-type, #view-amount-type {
     left: 650px; 
     width: 272px; 
     
