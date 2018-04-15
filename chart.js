@@ -26,7 +26,7 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
-var fill = d3.scale.ordinal().range(["#0c2986", "#08722D", "#992230"]);
+var fill = d3.scale.ordinal().range(["#A21313","#000000","#808080"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -46,7 +46,7 @@ var tooltip = d3.select("#chart")
 
 var comma = d3.format(",.0f");
 
-const rollSound = new Audio("./data/beep-08b.wav");
+// const rollSound = new Audio("./data/beep-08b.wav");
 
 function transition(name) {
 	if (name === "all-donations") {
@@ -56,7 +56,7 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
-		rollSound.play();
+		// rollSound.play();
 		return total();
 		//location.reload();
 	}
@@ -67,7 +67,7 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
-		rollSound.play();
+		// rollSound.play();
 		return partyGroup();
 	}
 	if (name === "group-by-amount-type") {
@@ -77,7 +77,7 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-amount-type").fadeIn(1000);
-		rollSound.play();
+		// rollSound.play();
 		return partyGroup2();
 	}
 	
@@ -88,7 +88,7 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
-		rollSound.play();
+		// rollSound.play();
 		return donorType();
 	}
 	if (name === "group-by-money-source")
@@ -98,7 +98,7 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
-		rollSound.play();
+		// rollSound.play();
 		return fundsType();
 	}
 
