@@ -1,5 +1,5 @@
 body {
-    background-color: #ffffff;
+    background-color: #D3D3D3;
     font-family:'Raleway', 'Open Sans', sans-serif;
 }
 p {
@@ -63,15 +63,15 @@ li {
 /*  Party view */
 #conservative, #labour, #libdem { padding: 10px; }
 #conservative {
-    background: rgba(8, 127, 189, 0.2);
+    background: rgb(102,102,102);
     top: 110px;
 }
 #labour {
-    background: rgba(240, 134, 51, 0.2);
+    background: rgb(189,89,89);
     top: 330px;
 }
 #libdem {
-    background: rgba(253, 187, 48, 0.2);
+    background: rgb(180,179,179);
     top: 550px;
 }
 
