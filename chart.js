@@ -26,7 +26,9 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
-var fill = d3.scale.ordinal().range(["#0c2986", "#08722D", "#992230"]);
+// allagi color scale stis mpales
+var fill = d3.scale.ordinal().range(["#A21313","#000000","#808080"]);
+
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
