@@ -31,7 +31,8 @@
     </script>
 </head>
 <!-- Add feature detection and noscript -->
-    
+	
+	
 <!-- Orismos zoom gia zoomarisma se keimeno -->    
     
     <style type="text/css">
@@ -57,15 +58,13 @@
         
      </style>
     
-<!-- Telos orismou zoom gia zoomarisma se keimeno -->     
-    
+<!-- Telos orismou zoom gia zoomarisma se keimeno --> 
 
 <body>
-    
-   
+
     <header role="banner" id="title">
         <h1 class=zoom>Who's funding the big three?</h1>
-     
+	    
      <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
      
      <!-- Prosthiki ixou gia click se pedio -->
@@ -75,8 +74,8 @@
     </script>
         
      <!-- Telos prosthikis ixou -->
-        
-        
+	    
+	    
     </header>
     <nav role="navigation">
         <ul onmousedown="bs.play()">
@@ -88,12 +87,10 @@
             </li>
             <li><a href="#" role="button" class="pure-button switch" id="group-by-donor-type"><p class=zoom>Split by type of donor</p></a>
             </li>
-            <li><a href="#" role="button" class="pure-button switch" id="group-by-donation-amount"><p class=zoom>Split by the amount of the donation</p></a>
+			<li><a href="#" role="button" class="pure-button switch" id="group-by-amount-type"><p class=zoom>Split by the amount of the donation</p></a>
             </li>
         </ul>
     </nav>
-    
-    
 
     <div id="annotations">
 
@@ -137,7 +134,7 @@
             <div id="e">
                 <p class=zoom><strong>&#163;1m &#8212;</strong>
             </div>
-        </div>
+	</div>
         <!-- End initial-->
 
         <!-- Public or private money annotations -->
@@ -244,8 +241,8 @@
                         </p>
             </div>
         </div>
-        
-        <div id="view-amount-type">
+		
+		<div id="view-amount-type">
 		
             <h3>By Amount</h3>
 			
@@ -263,6 +260,8 @@
 			</div>
         </div>
         
+		
+		
     </div>
     <div id="chart"></div>
 
@@ -273,8 +272,7 @@
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.v3.min.js" charset="utf-8"></script>
     <script src="chart.js"></script>
+	
 </body>
-    
- 
 
 </html>
