@@ -31,84 +31,62 @@
     </script>
 </head>
 <!-- Add feature detection and noscript -->
-	
-	
 
 <body>
 
     <header role="banner" id="title">
-        <h1 class=zoom>Who's funding the big three?</h1>
-     
-     <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
-     
-     <!-- Prosthiki ixou gia click se pedio -->
-     <script>
-        var bs = new Audio();
-        bs.src = "Click.mp3";
-    </script>
-        
-     <!-- Telos prosthikis ixou -->
-        
-        
+        <h1>Who's funding the big three?</h1>
     </header>
     <nav role="navigation">
-        <ul onmousedown="bs.play()">
-            <li><a href="#" role="button" class="pure-button switch" id="all-donations"><p class=zoom>All money</p></a>
+        <ul>
+            <li><a href="#" role="button" class="pure-button switch" id="all-donations">All money</a>
             </li>
-            <li><a href="#" role="button" class="pure-button switch" id="group-by-money-source"><p class=zoom>The public's purse</p></a>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-money-source">The public's purse</a>
             </li>
-            <li><a href="#" role="button" class="pure-button switch" id="group-by-party"><p class=zoom>Split by party</p></a>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-party">Split by party</a>
             </li>
-            <li><a href="#" role="button" class="pure-button switch" id="group-by-donor-type"><p class=zoom>Split by type of donor</p></a>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-donor-type">Split by type of donor</a>
             </li>
-            <li><a href="#" role="button" class="pure-button switch" id="group-by-donation-amount"><p class=zoom>Split by the amount of the donation</p></a>
+			<li><a href="#" role="button" class="pure-button switch" id="group-by-amount-type">Split by the amount of the donation</a>
             </li>
         </ul>
     </nav>
-    
-    
 
     <div id="annotations">
 
         <!-- Initial annotations -->
         <div id="initial-content">
-            <br>
-            <h2 class=zoom>Political donations and funding accepted by the Conservatives, Labour and Liberal Democrats between the 2010 general election and August 2013, when this data was collected. 
-            </h2>
-            <br>
-            <p class=zoom>Each circle represents the total amount donated by a single donor group, funding organisation or individual during that period.
-            </p>
-            <br>
-            <p class=zoom>Hover over a circle to show further information.
-            </p>
-            <br>
-            <p class=zoom>Get an immediate overview of how party funding is shaped in Britain today by selecting one of the options at the top of the page.
-             </p>
-            <br>
-            <p class=zoom>Data is based on all reportable donations over &#163;7500.
-            </p>
-            <br>
-            <p class=zoom>Data source: <a href="http://www.electoralcommission.org.uk/">The Electoral Commission.</a>
-            </p>
+			<div id ="zoom">
+				 <div class="small">
+					<h2>Political donations and funding accepted by the Conservatives, Labour and Liberal Democrats between the 2010 general election and August 2013, when this data was collected.</h2>
+					<p>Each circle represents the total amount donated by a single donor group, funding organisation or individual during that period.</p>
+					<p>Hover over a circle to show further information.</p>
+
+					<p>Get an immediate overview of how party funding is shaped in Britain today by selecting one of the options at the top of the page.</p>
+					<p>Data is based on all reportable donations over &#163;7500.</p>
+					<p>Data source: <a href="http://www.electoralcommission.org.uk/">The Electoral Commission.</a>
+					</p>
+				</div>
+			</div>
         </div>
         <div id="value-scale">
             <div id="f">
-                <p class=zoom>&#8212;UK average salary</p>
+                <p>&#8212;UK average salary</p>
             </div>
             <div id="a">
-                <p class=zoom><strong>&#163;25k &#8212;</strong>
+                <strong>&#163;25k &#8212;</strong>
             </div>
             <div id="b">
-                <p class=zoom><strong>&#163;50k &#8212;</strong>
+                <strong>&#163;50k &#8212;</strong>
             </div>
             <div id="c">
-                <p class=zoom><strong>&#163;100k &#8212;</strong>
+                <strong>&#163;100k &#8212;</strong>
             </div>
             <div id="d">
-                <p class=zoom><strong>&#163;500k &#8212;</strong>
+                <strong>&#163;500k &#8212;</strong>
             </div>
             <div id="e">
-                <p class=zoom><strong>&#163;1m &#8212;</strong>
+                <strong>&#163;1m &#8212;</strong>
             </div>
         </div>
         <!-- End initial-->
@@ -116,65 +94,68 @@
         <!-- Public or private money annotations -->
         <div id="view-source-type">
             <div id="public-or-private-money" class="public-private">
-                <br>
-                <h3 class=zoom>Public money vs private cash</h3>
-                <br>
-                <p class=zoom>Despite general public opposition to more taxpayer money being given to political parties, public funds are already provided to opposition parties in the form of 'short money' from the House of Commons, House of Lords and Scottish Parliament.
-                </p>
-                <br><p class=zoom>The parties also benefit from 'Policy development grants' given by the Electoral Commission.</p>
+                <h3>Public money vs private cash</h3>
+                <p>Despite general public opposition to more taxpayer money being given to political parties, public funds are already provided to opposition parties in the form of 'short money' from the House of Commons, House of Lords and Scottish Parliament.</p>
+                <p>The parties also benefit from 'Policy development grants' given by the Electoral Commission.</p>
             </div>
             <div id="public-or-private-money-split" class="public-private">
                 <div id="private-money">
-                    <h6 class=zoom><font size="3">Private Donations</font></h6>
-                    <p class=zoom ><strong>Total: &#163;89,752,524 </strong></p>
-                    <p class=zoom>Proportion of all donations:</p>
-                    <p class=zoom><strong>77%</strong></p>
+                    <h5>Private Donations</h5>
+                    <strong>Total: &#163;89,752,524
+                        </strong>
+                            <p>Proportion of all donations:
+                                <strong>77%</strong>
+                            </p>
                 </div>
                 <div id="public-money">
-                    <h6 class=zoom><font size="3">Public Funds</font></h6>
-                    <p class=zoom><strong>Total: &#163;26,579,038 </strong></p>
-                    <p class=zoom>Proportion of all donations:</p>
-                    <p class=zoom><strong>23%</strong></p>
+                    <h5>Public Funds</h5>
+                    <strong>Total: &#163;26,579,038
+                        </strong>
+                            <p>Proportion of all donations:
+                                <strong>23%</strong>
+                            </p>
                 </div>
           </div>
         </div>
         <!-- End public or private money -->
 
         <div id="view-party-type">
-            <br>
-            <h3 class=zoom>Income for each party from private sources.</h3>
+            <h3>Income for each party from private sources.</h3>
             <div id="conservative">
-                <h5 class=zoom><font size="3">Conservative Party</font></h5>
-                <p class=zoom><strong>Total: &#163;43.7 million</strong></p>
-                        <p class=zoom>Top 50 donors gave:
+                <h5>Conservative Party</h5>
+                <strong>Total: &#163;43.7 million
+                    </strong>
+                        <p>Top 50 donors gave:
                             <strong>&#163;23,329,828</strong>
                             <br>
                             <strong>50%</strong>of the total.</p>
-                        <p class=zoom>Top 10 donors gave:
+                        <p>Top 10 donors gave:
                             <strong>&#163;12,877,989</strong>
                             <br>
                             <strong>27%</strong>of the total</p>
             </div>
             <div id="labour">
-                <h5 class=zoom><font size="3">Labour Party</font></h5>
-                <p class=zoom><strong>Total: &#163;38.9 million</strong></p>
-                        <p class=zoom>Top 50 donors gave:
+                <h5>Labour Party</h5>
+                <strong>Total: &#163;38.9 million
+                    </strong>
+                        <p>Top 50 donors gave:
                             <strong>&#163;39,196,684</strong>
                             <br>
                             <strong>92%</strong>of the total.</p>
-                        <p class=zoom>Top 10 donors gave:
+                        <p>Top 10 donors gave:
                             <strong>&#163;34,715,877</strong>
                             <br>
                             <strong>81%</strong>of the total</p>
             </div>
             <div id="libdem">
-                <h5 class=zoom><font size="3">Liberal Democrats</font></h5>
-                <p class=zoom><strong>Total: &#163;7.1 million</strong></p>
-                        <p class=zoom>Top 50 donors gave:
+                <h5>Liberal Democrats</h5>
+                <strong>Total: &#163;7.1 million
+                    </strong>
+                        <p>Top 50 donors gave:
                             <strong>&#163;6,975,973</strong>
                             <br>
                             <strong>63%</strong>of the total.</p>
-                        <p class=zoom>Top 10 donors gave:
+                        <p>Top 10 donors gave:
                             <strong>&#163;4,823,899.71</strong>
                             <br>
                             <strong>43%</strong>of the total</p>
@@ -182,43 +163,48 @@
         </div>
         <div id="view-donor-type">
             <div id="individual">
-                <h5 class=zoom><font size="3">Individuals</font></h5>
-                <p class=zoom><strong>Total: &#163; 35,191,222</strong></p>
-                        <p class=zoom>Proportion of all donations:
+                <h5>Individuals</h5>
+                <strong>Total: &#163; 35,191,222
+                    </strong>
+                        <p>Proportion of all donations:
                             <strong>39%</strong>
                         </p>
             </div>
             <div id="company">
-                <h5 class=zoom><font size="3">Companies</font></h5>
-                <p class=zoom><strong>Total: &#163; 17,052,129</strong></p>
-                        <p class=zoom>Proportion of all donations:
+                <h5>Companies</h5>
+                <strong>Total: &#163; 17,052,129
+                    </strong>
+                        <p>Proportion of all donations:
                             <strong>19%</strong>
                         </p>
             </div>
             <div id="union">
-                <h5 class=zoom><font size="3">Trade Unions</font></h5>
-                <p class=zoom><strong>Total: &#163;31,474,649</strong></p>
-                        <p class=zoom>Proportion of all donations:
+                <h5>Trade Unions</h5>
+                <strong>Total: &#163;31,474,649
+                    </strong>
+                        <p>Proportion of all donations:
                             <strong>35%</strong>
                         </p>
             </div>
             <div id="society">
-                <h5 class=zoom><font size="3">Societies</font></h5>
-                <p class=zoom><strong>Total: &#163;4,550,129</strong></p>
-                        <p class=zoom>Proportion of all donations:
+                <h5>Societies</h5>
+                <strong>Total: &#163;4,550,129
+                    </strong>
+                        <p>Proportion of all donations:
                             <strong>5%</strong>
                         </p>
             </div>
             <div id="other">
-                <h5 class=zoom><font size="3">Others</font></h5>
-                <p class=zoom><strong>Total: &#163; 1,484,395</strong></p>
-                        <p class=zoom>Proportion of all donations:
+                <h5>Others</h5>
+                <strong>Total: &#163; 1,484,395
+                    </strong>
+                        <p>Proportion of all donations:
                             <strong>2%</strong>
                         </p>
             </div>
         </div>
-        
-        <div id="view-amount-type">
+		
+		<div id="view-amount-type">
 		
             <h3>By Amount</h3>
 			
@@ -236,8 +222,10 @@
 			</div>
         </div>
         
+		
+		
     </div>
-<div id="chart"></div>
+    <div id="chart"></div>
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -246,7 +234,65 @@
     </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.2.2/d3.v3.min.js" charset="utf-8"></script>
     <script src="chart.js"></script>
+	
 
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.1/js/materialize.min.js"></script>
+	<script src="speech.js"></script>
+	
+	<link rel="stylesheet" href="anythingzoomer.css">
+	<script src="jquery.anythingzoomer.js"></script>
+	
+	<script>
+  $(function(){
+    $("#zoom").anythingZoomer({
+    // ***************** content areas *****************
+    // class of small content area; the element with this class
+    // name must be inside of the wrapper
+    smallArea: 'small',
+    // class of large content area; this class must exist inside
+    // of the wrapper. When the clone option is true, it will add
+    // this automatically
+    largeArea: 'large',
+    // Make a clone of the small content area, use css to modify
+    // the style; default is false;
+    // set to true here to clone the small content
+    clone: true,
+    // ***************** appearance *****************
+    // Set to true to add the overlay style while hovering the
+    // small content, false to disable
+    overlay: true,
+    // fade animation speed (in milliseconds)
+    speed: 10,
+    // How far outside the wrapped edges the mouse can go;
+    // previously called "expansionSize"
+    edge: 30,
+    // adjust the horizontal position of the large content inside
+    // the zoom window as desired
+    offsetX: 0,
+    // adjust the vertical position of the large content inside
+    // the zoom window as desired
+    offsetY: 0,
+    // ***************** functionality *****************
+    // event that allows toggling between small and large
+    // elements; default is double click ('dblclick')
+    switchEvent: 'dblclick',
+    // time to delay before revealing the zoom window.
+    delay: 0,
+    // ***************** edit mode *****************
+    // add x,y coordinates into zoom window to make it easier to
+    // find coordinates
+    edit: false,
+    // ***************** callbacks *****************
+    // AnythingZoomer done initializing
+    initialzied: function(e, zoomer) {},
+    // zoom window visible
+    zoom: function(e, zoomer) {},
+    // zoom window hidden
+    unzoom: function(e, zoomer) {}
+  });
+  });
+</script>
 	
 </body>
 
