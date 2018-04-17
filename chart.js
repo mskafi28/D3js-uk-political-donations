@@ -9,7 +9,7 @@ var radius = d3.scale.sqrt().range([10, 20]);
 var partyCentres = { 
     con: { x: w / 3, y: h / 3.3}, 
     lab: {x: w / 3, y: h / 2.3}, 
-    lib: {x: w / 3	, y: h / 1.8}
+    lib: {x: w / 3, y: h / 1.8}
   };
 
 var partyCentres2 = { 
@@ -48,8 +48,6 @@ var tooltip = d3.select("#chart")
 
 var comma = d3.format(",.0f");
 
-const rollSound = new Audio("./data/beep-08b.wav");
-
 function transition(name) {
 	if (name === "all-donations") {
 		$("#initial-content").fadeIn(250);
@@ -58,7 +56,6 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
-		rollSound.play();
 		return total();
 		//location.reload();
 	}
@@ -69,7 +66,6 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
-		rollSound.play();
 		return partyGroup();
 	}
 	if (name === "group-by-amount-type") {
@@ -79,7 +75,6 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-amount-type").fadeIn(1000);
-		rollSound.play();
 		return partyGroup2();
 	}
 	
@@ -90,7 +85,6 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
-		rollSound.play();
 		return donorType();
 	}
 	if (name === "group-by-money-source")
@@ -100,7 +94,6 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
-		rollSound.play();
 		return fundsType();
 	}
 
@@ -418,6 +411,9 @@ function mouseover(d, i) {
     .style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
 		.html(infoBox)
 			.style("display","block");
+	
+	var donatorsname = new SpeechSynthesisUtterance("Donator's name is " + donor + " and the donation amount is " + amount + " pounds");
+	window.speechSynthesis.speak(donatorsname);
 	
 	
 	}
