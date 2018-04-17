@@ -26,9 +26,7 @@ var entityCentres = {
 		individual: {x: w / 3.65, y: h / 3.3},
 	};
 
-// allagi color scale stis mpales
-var fill = d3.scale.ordinal().range(["#A21313","#000000","#808080"]);
-
+var fill = d3.scale.ordinal().range(["#0c2986", "#08722D", "#992230"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -48,7 +46,7 @@ var tooltip = d3.select("#chart")
 
 var comma = d3.format(",.0f");
 
-// const rollSound = new Audio("./data/beep-08b.wav");
+const rollSound = new Audio("./data/beep-08b.wav");
 
 function transition(name) {
 	if (name === "all-donations") {
@@ -58,7 +56,9 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
+		rollSound.play();
 		return total();
+		//location.reload();
 	}
 	if (name === "group-by-party") {
 		$("#initial-content").fadeOut(250);
@@ -67,6 +67,7 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
+		rollSound.play();
 		return partyGroup();
 	}
 	if (name === "group-by-amount-type") {
@@ -76,6 +77,7 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-amount-type").fadeIn(1000);
+		rollSound.play();
 		return partyGroup2();
 	}
 	
@@ -86,6 +88,7 @@ function transition(name) {
 		$("#view-source-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
+		rollSound.play();
 		return donorType();
 	}
 	if (name === "group-by-money-source")
@@ -95,6 +98,7 @@ function transition(name) {
 		$("#view-party-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
+		rollSound.play();
 		return fundsType();
 	}
 
@@ -361,8 +365,21 @@ function display(data) {
 	return start();
 }
 
+function click(d, i) {
+	window.open("https://www.google.gr/search?q="+d.donor, '_blank'); 
+}
 
-function mouseover(d, i) {  
+function mouseover(d, i) {
+		  var text = d.donor+ ' '+d.value;
+      var msg = new SpeechSynthesisUtterance();
+      msg.rate = 0.6; 
+      msg.pitch = 5; 
+      msg.text = text;
+      msg.onend = function(e) {
+        console.log('Finished in ' + event.elapsedTime + ' seconds.');
+      };
+      speechSynthesis.speak(msg);
+	  
 	// tooltip popup
 	var mosie = d3.select(this);
 	var amount = mosie.attr("amount");
@@ -399,10 +416,6 @@ function mouseover(d, i) {
     .style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
 		.html(infoBox)
 			.style("display","block");
-	
-	
-	var donatorsname = new SpeechSynthesisUtterance("Donator's name is " + donor + " and the donation amount is " + amount + " pounds");
-	window.speechSynthesis.speak(donatorsname);
 	
 	
 	}
