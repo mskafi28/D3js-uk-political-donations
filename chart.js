@@ -93,7 +93,9 @@ function start() {
 		.attr("r", 0)
 		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
-		.on("mouseout", mouseout);
+		.on("mouseout", mouseout)
+		.on("click", SearchGoogle); // prosthiki sinartisis gia anazitisi sto google
+	
 		// Alternative title based 'tooltips'
 		// node.append("title")
 		//	.text(function(d) { return d.donor; });
@@ -339,6 +341,14 @@ function mouseout() {
 		d3.select(".tooltip")
 			.style("display", "none");
 		}
+
+//prosthiki sinartisis gia tin anazitisi sto google
+function SearchGoogle(d)
+{
+    var query = d.donor + " " + d.entity + " " + d.partyLabel + " party";
+    url ='http://www.google.com/search?q=' + query;
+    window.open(url,'_blank');
+}
 
 $(document).ready(function() {
 		d3.selectAll(".switch").on("click", function(d) {
