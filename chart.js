@@ -22,7 +22,7 @@ var entityCentres = {
 	};
 
 // allagi xromaton stis mpales me ta dedomena
-var fill = d3.scale.ordinal().range(["#122f3c", "bdbf04", "fd0000"]);
+var fill = d3.scale.ordinal().range(["#122f3c", "bdbf04", "#c70151"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
