@@ -65,11 +65,12 @@ li {
 /* allagi xromaton sta tria pedia omadopoiisis tou Split by Party */
 #conservative, #labour, #libdem { padding: 10px; }
 #conservative {
-    background: rgba(136,151,157, 0.8);
+    background: rgba(189,191,4, 0.8);
+    
     top: 110px;
 }
 #labour {
-    background: rgba(189,191,4, 0.8);
+    background: rgba(136,151,157, 0.8);
     top: 330px;
 }
 #libdem {
