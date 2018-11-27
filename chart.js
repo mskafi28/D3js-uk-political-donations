@@ -298,7 +298,7 @@ function display(data) {
 				y: -y
       };
 			
-      nodes.push(node)
+      nodes.push(node);
 	});
 
 	console.log(nodes);
@@ -312,6 +312,7 @@ function display(data) {
 
 function mouseover(d, i) {
 	// tooltip popup
+	var omilia = new SpeechSynthesisUtterance();   // prosthiki metavlitis gia omilia
 	var mosie = d3.select(this);
 	var amount = mosie.attr("amount");
 	var donor = d.donor;
@@ -330,16 +331,30 @@ function mouseover(d, i) {
     .style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
 		.html(infoBox)
 			.style("display","block");
+	
+	
+// prosthiki omilias otan o xristis perna pano apo ton kiklo kapoiou doriti
+  omilia.text = donor + " for the " + party + " party" + amount + "pounds";
+  omilia.volume = 1;
+  omilia.rate = 1;
+  omilia.pitch = 1;
+
+  window.speechSynthesis.speak(omilia);   // on mouseover it speaks
+
 	}
 
 function mouseout() {
 	// no more tooltips
+		var omilia = new SpeechSynthesisUtterance();
 		var mosie = d3.select(this);
 
 		mosie.classed("active", false);
 
 		d3.select(".tooltip")
 			.style("display", "none");
+		
+		// pausi omilias otan o xristis fevgi apo ton kiklo tou doriti
+		window.speechSynthesis.cancel(omilia);  
 		}
 
 //prosthiki sinartisis gia tin anazitisi sto google
