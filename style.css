@@ -19,6 +19,11 @@ li {
     display: inline;
 }
 
+/* prosthiki zoom  200% otan to pontiki perna pano apo keimeno*/
+p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
+    font-size: 200%;
+}
+
 /* 	Information boxes for different chart layouts */
 /* Positioning */
 #initial-content, #a, #b, #c, #d, #e, #f, #view-party-type, #view-donor-type, #view-source-type, #partyInfo, #conservative, #labour, #libdem, #individual, #company, #union, #society, #other, #public-or-private-money, #public-or-private-money-split, #private-money, #public-money { 
