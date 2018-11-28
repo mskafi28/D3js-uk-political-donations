@@ -76,17 +76,6 @@ function transition(name) {
 		$("#view-source-type").fadeIn(1000);
 		return fundsType();
 	}
-	// gia ti nea katigoria Split by amount
-	if (name === "group-by-amount") {
-		beep.currentTime = 0;
-		beep.play();
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeOut(250);
-		return amountType();
-	}
 
 function start() {
 
