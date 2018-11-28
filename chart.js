@@ -336,7 +336,7 @@ function mouseover(d, i) {
 // prosthiki omilias otan o xristis perna pano apo ton kiklo kapoiou doriti
   omilia.text = donor + " for the " + party + " party" + amount + "pounds";
   omilia.volume = 3;
-  omilia.rate = 2;
+  omilia.rate = 0.5;
   omilia.pitch = 1;
 
   window.speechSynthesis.speak(omilia);   // on mouseover it speaks
