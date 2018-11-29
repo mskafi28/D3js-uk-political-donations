@@ -123,13 +123,13 @@ p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 }
 
 #div_100_500 { 
-    top: 50px;
-    left: 750px;
+    top: 620px;
+    left: 200px;
 }
 
 #div_500_1000 { 
-    top: 620px;
-    left: 200px;
+    top: 50px;
+    left: 750px;
 }
 
 #div_more_1000 {
