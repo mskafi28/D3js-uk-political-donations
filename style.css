@@ -110,6 +110,35 @@ p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
     right: 0
 }
 
+/* gia ti nea katigoria Split by amount: Amount scale */
+#div_0_500, #div_500_5000, #div_5000_10000, #div_more_10000 {
+    position: absolute;
+    width: 200px;
+    text-align: center;
+}
+
+#div_0_500 { 
+    top: 50px;
+    left: 200px;
+}
+
+#div_500_5000 { 
+    top: 620px;
+    left: 200px;
+}
+
+#div_5000_10000 { 
+    top: 50px;
+    left: 750px;
+}
+
+#div_more_10000 {
+    top: 620px;
+    left: 750px;
+}
+
+/* End of view */
+
 /* Value scale */
 
 #value-scale {
