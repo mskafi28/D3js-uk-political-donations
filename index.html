@@ -55,6 +55,8 @@
             </li>
             <li><a href="#" onclick="onClick_Sound2.play()" role="button" class="pure-button switch" id="group-by-donor-type">Split by type of donor</a>
             </li>
+            <li><a href="#" role="button" class="pure-button switch" id="group-by-amount">Split by amount</a>
+            </li>
         </ul>
     </nav>
 
@@ -205,6 +207,24 @@
                         </p>
             </div>
         </div>
+        
+        <!-- gia ti nea katigoria Split by amount -->
+        
+        <div id="view-amount-type">
+            <div id="div_0_500">
+                <p> Less than <strong>£ 500,000</strong> </p>
+            </div>
+            <div id="div_500_5000">
+                <p>  Between  <strong>£ 500,000</strong> and <strong>£ 5,000,000</strong> </p>
+            </div>
+            <div id="div_5000_10000">
+                <p>  Between <strong>£ 5,000,000</strong> and <strong>£ 10,000,000</strong> </p>
+            </div>
+            <div id="div_more_10000">
+                <p>  More than <strong>£ 10,000,000</strong> </p>
+            </div>
+        </div>
+    </div>
         
         
     <div id="chart"></div>
