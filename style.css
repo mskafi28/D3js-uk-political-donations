@@ -111,28 +111,28 @@ p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 }
 
 /* gia ti nea katigoria Split by amount: Amount scale */
-#div_0_500, #div_500_5000, #div_5000_10000, #div_more_10000 {
+#div_0_100, #div_100_500, #div_500_1000, #div_more_1000 {
     position: absolute;
     width: 200px;
     text-align: center;
 }
 
-#div_0_500 { 
+#div_0_100 { 
     top: 50px;
     left: 200px;
 }
 
-#div_500_5000 { 
-    top: 620px;
-    left: 200px;
-}
-
-#div_5000_10000 { 
+#div_100_500 { 
     top: 50px;
     left: 750px;
 }
 
-#div_more_10000 {
+#div_500_1000 { 
+    top: 620px;
+    left: 200px;
+}
+
+#div_more_1000 {
     top: 620px;
     left: 750px;
 }
