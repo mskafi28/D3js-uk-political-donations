@@ -379,6 +379,14 @@ function mouseover(d, i) {
 	var party = d.partyLabel;
 	var entity = d.entityLabel;
 	var offset = $("svg").offset();
+	
+	// elegxos tou url tis eikonas
+	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
+
+	
+	
+	// *******************************************
+	
 	var infoBox = "<p> Source: <b>" + donor + "</b></p>"
 								+ "<p> Recipient: <b>" + party + "</b></p>"
 								+ "<p> Type of donor: <b>" + entity + "</b></p>"
@@ -391,6 +399,7 @@ function mouseover(d, i) {
     .style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
 		.html(infoBox)
 			.style("display","block");
+	$("#mouseTrackingCrumbs").prepend("<img src='" + imageFile +"' width='30' height='30' onError='this.src=\"https://github.com/favicon.ico\";' /><br/>");
 	
 	
 // prosthiki omilias otan o xristis perna pano apo ton kiklo kapoiou doriti
