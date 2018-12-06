@@ -112,9 +112,9 @@ p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 
 /* gia ti nea katigoria Split by amount: Amount scale */
 #div_0_100, #div_101_500, #div_501_1000, #div_more_1000 {
-    position: absolute;
+    /* position: absolute; */
     width: 200px;
-    text-align: center;
+    /* text-align: center; */
 }
 
 #div_0_100 { 
