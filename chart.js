@@ -33,6 +33,12 @@ var svg = d3.select("#chart").append("svg")
 	.attr("width", w)
 	.attr("height", h);
 
+// dimiourgia grafimatos pitas gia to deftro paradoteo
+var piesvg = d3.select("#pie-chart").append("svg")
+    .attr("id", "pie-svg")
+    .attr("width", w)
+    .attr("height", h);
+
 var nodeGroup = svg.append("g");
 
 var tooltip = d3.select("#chart")
@@ -45,50 +51,80 @@ var comma = d3.format(",.0f");
 function transition(name) {
 	if (name === "all-donations") {
 		$("#initial-content").fadeIn(250);
+		$("#initial-content-pie").fadeOut(250);
 		$("#value-scale").fadeIn(1000);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
+		$("#chart").fadeIn(1000);
+		$("#pie-chart").fadeOut(250);
 		return total();
 		//location.reload();
 	}
+	
+	// gia to grafima pita
+	if (name === "all-donations-pie") {
+        $("#initial-content").fadeOut(250);
+        $("#initial-content-pie").fadeIn(1000);
+        $("#value-scale").fadeOut(250);
+        $("#view-donor-type").fadeOut(250);
+        $("#view-source-type").fadeOut(250);
+        $("#view-party-type").fadeOut(250);
+        $("#view-amount").fadeOut(250);
+        $("#pie-chart").fadeIn(1000);
+        $("#chart").fadeOut(250);
+        //location.reload();
+    }
+	
 	if (name === "group-by-party") {
 		$("#initial-content").fadeOut(250);
+		$("#initial-content-pie").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-party-type").fadeIn(1000);
+		$("#chart").fadeIn(1000);
+        	$("#pie-chart").fadeOut(250);
 		return partyGroup();
 	}
 	if (name === "group-by-donor-type") {
 		$("#initial-content").fadeOut(250);
+		$("#initial-content-pie").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-donor-type").fadeIn(1000);
+		$("#chart").fadeIn(1000);
+        	$("#pie-chart").fadeOut(250);
 		return donorType();
 	}
 	
 	if (name === "group-by-amount") {
 		$("#initial-content").fadeOut(250);
+		$("#initial-content-pie").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-source-type").fadeOut(250);
 		$("#view-amount-type").fadeIn(1000);
+		$("#chart").fadeIn(1000);
+        	$("#pie-chart").fadeOut(250);
 		return amountType();
 	}
 	
 	if (name === "group-by-money-source")
 		$("#initial-content").fadeOut(250);
+		$("#initial-content-pie").fadeOut(250);
 		$("#value-scale").fadeOut(250);
 		$("#view-donor-type").fadeOut(250);
 		$("#view-party-type").fadeOut(250);
 		$("#view-amount-type").fadeOut(250);
 		$("#view-source-type").fadeIn(1000);
+		$("#chart").fadeIn(1000);
+        	$("#pie-chart").fadeOut(250);
 		return fundsType();
 	}
 
@@ -124,6 +160,8 @@ function start() {
 		node.transition()
 			.duration(2500)
 			.attr("r", function(d) { return d.radius; });
+	
+		drawTotalPie();
 }
 
 function total() {
@@ -442,5 +480,149 @@ $(document).ready(function() {
     return d3.csv("data/7500up.csv", display);
 
 });
+
+// neo grafima optikopiisis ton dedomenon: pie chart
+
+function drawTotalPie() {
+
+	var r = 270;
+
+    var partyData = [
+    	{label:"Conservative", value: nodes
+				.filter(function (n) { return n.party == "con" })
+				.map(function (node) { return +node.value })
+				.reduce(function (acc, current) { return acc + current })},
+        {label:"Labour", value: nodes
+				.filter(function (n) { return n.party == "lab" })
+                .map(function (node) { return +node.value })
+				.reduce(function (acc, current) { return acc + current })},
+        {label:"Liberal", value: nodes
+				.filter(function (n) { return n.party == "lib" })
+                .map(function (node) { return +node.value })
+				.reduce(function (acc, current) { return acc + current })}
+        ];
+
+    var entityData = [
+        {label:"Union", value: nodes
+                .filter(function (n) { return n.entity == "union" })
+                .map(function (node) { return +node.value })
+                .reduce(function (acc, current) { return acc + current })},
+        {label:"Individual", value: nodes
+                .filter(function (n) { return n.entity == "individual" })
+                .map(function (node) { return +node.value })
+                .reduce(function (acc, current) { return acc + current })},
+        {label:"Company", value: nodes
+                .filter(function (n) { return n.entity == "company" })
+                .map(function (node) { return +node.value })
+                .reduce(function (acc, current) { return acc + current })},
+        {label:"Society", value: nodes
+                .filter(function (n) { return n.entity == "society" })
+                .map(function (node) { return +node.value })
+                .reduce(function (acc, current) { return acc + current })},
+        {label:"Other", value: nodes
+                .filter(function (n) { return n.entity == "other" })
+                .map(function (node) { return +node.value })
+                .reduce(function (acc, current) { return acc + current })},
+    ];
+
+    // Party Ring
+    var g = piesvg
+        .data([partyData])
+        .append("g")
+        .attr("transform", "translate(" + (r + 60) + "," + (r + 30) + ")")
+
+    var arc = d3.svg.arc()
+        .outerRadius(r)
+        .innerRadius(2*r/3);
+
+    var pie = d3.layout.pie()
+        .value(function(d) { return d.value; });
+
+    var arcs = g.selectAll("g.slice")  
+        .data(pie)         
+        .enter()        
+        .append("g") 
+        .attr("class", "slice"); 
+
+    arcs.append("path")
+        .attr("fill", function(d, i) { return fill(i); } )
+        .attr("d", arc); 
+
+    arcs.append("text") 
+        .attr("transform", function(d) { 
+            //we have to make sure to set these before calling arc.centroid
+            d.innerRadius = 0;
+            d.outerRadius = r;
+            return "translate(" + [arc.centroid(d)[0], arc.centroid(d)[1] - 8] + ")"; 
+        })
+        .attr("text-anchor", "middle") 
+		.attr("class", "pie-label")
+        .text(function(d) {
+        	return d.data.label;
+        });  
+
+
+    arcs.append("text")  
+        .attr("transform", function(d) {   
+            d.innerRadius = 0;
+            d.outerRadius = r;
+            return "translate(" + [arc.centroid(d)[0], arc.centroid(d)[1] + 8] + ")";   
+        })
+        .attr("text-anchor", "middle")  
+        .attr("class", "pie-amount")
+        .text(function(d) {
+            return "£" + comma(d.data.value);
+        });
+
+
+
+    // Entity Ring
+    var g2 = piesvg
+        .data([entityData])
+        .append("g")
+        .attr("transform", "translate(" + (r + 60) + "," + (r + 30) + ")")
+
+    var arc2 = d3.svg.arc()  
+        .outerRadius(2*r/3)
+        .innerRadius(r/3);
+
+    var pie2 = d3.layout.pie()
+        .value(function(d) { return d.value; });
+
+    var arcs2 = g2.selectAll("g.slice")
+        .data(pie2) 
+        .enter()            
+        .append("g")           
+        .attr("class", "slice"); 
+
+    arcs2.append("path")
+        .attr("fill", function(d, i) { return fill2(i); } )
+        .attr("d", arc2);
+
+    arcs2.append("text") 
+        .attr("transform", function(d) {          
+            d.innerRadius = 0;
+            d.outerRadius = r;
+            return "translate(" + [arc2.centroid(d)[0], arc2.centroid(d)[1] - 8] + ")"; 
+        })
+        .attr("text-anchor", "middle")     
+        .attr("class", "pie-label")
+        .text(function(d) {
+            return d.data.label;
+        });        //get the label from our original data array
+
+
+    arcs2.append("text") 
+        .attr("transform", function(d) {    
+            d.innerRadius = 0;
+            d.outerRadius = r;
+            return "translate(" + [arc2.centroid(d)[0], arc2.centroid(d)[1] + 8] + ")";     
+        })
+        .attr("text-anchor", "middle")                          
+        .attr("class", "pie-amount")
+        .text(function(d) {
+            return "£" + comma(d.data.value);
+        });
+}
 
 
