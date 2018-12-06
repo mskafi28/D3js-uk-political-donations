@@ -35,6 +35,34 @@
         s.parentNode.insertBefore(ga, s);
     })();
     </script>
+    
+    <style type="text/css">
+           #mouse-visits{
+               position: fixed;
+               bottom: 10px;
+               right: 10px;
+               width: 300px;
+               height: 200px;
+               overflow-y: scroll;
+               border: 2px solid grey;
+               background-color: whitesmoke;
+               padding: 10px;
+           }
+           .icon-image{
+               width: 50px;
+           }
+           .pie-label{
+               font-size: 13px;
+           }
+           .pie-amount{
+               font-size: 11px;
+           }
+           #pie-svg path {
+               stroke: #FFFFFF;
+               stroke-width: 4;
+           }
+ </style>
+    
 </head>
 <!-- Add feature detection and noscript -->
 
@@ -71,6 +99,11 @@
             <p>Get an immediate overview of how party funding is shaped in Britain today by selecting one of the options at the top of the page.</p>
             <p>Data is based on all reportable donations over &#163;7500.</p>
             <p>Data source: <a href="http://www.electoralcommission.org.uk/">The Electoral Commission.</a>
+            </p>
+        </div>
+        <div id="initial-content-pie">
+            <h2 class=zoom>Pie chart</h2>
+            <p class=zoom>The outer circle represents the amount received by each party and the inner circle the contribution of each entity.</p>
             </p>
         </div>
         <div id="value-scale">
@@ -228,6 +261,7 @@
         
     <div id="mouseTrackingCrumbs"></div> 
     <div id="chart"></div>
+    <div id="pie-chart"></div>
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
