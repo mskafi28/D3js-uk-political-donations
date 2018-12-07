@@ -33,6 +33,8 @@ var svg = d3.select("#chart").append("svg")
 	.attr("width", w)
 	.attr("height", h);
 
+var nodeGroup = svg.append("g");
+
 var tooltip = d3.select("#chart")
  	.append("div")
 	.attr("class", "tooltip")
