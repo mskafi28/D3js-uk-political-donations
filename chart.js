@@ -408,7 +408,7 @@ function mouseover(d, i) {
     .style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
 		.html(infoBox)
 			.style("display","block");
-	$("#mouseTrackingCrumbs").prepend("<img src='" + imageFile +"' width='30' height='30' onError='this.src=\"https://github.com/favicon.ico\";' /><br/>");
+	$("#mouseTrackingCrumbs").prepend("<img src='" + imageFile +"' width='60' height='60' onError='this.src=\"https://github.com/favicon.ico\";' /><br/>");
 	
 	
 // prosthiki omilias otan o xristis perna pano apo ton kiklo kapoiou doriti
