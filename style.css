@@ -24,7 +24,7 @@ li {
 #mouseTrackingCrumbs{
     padding: 5px;
     position: fixed;
-    right: 50;
+    right: 0;
     left: 500;
     bottom: 0;
     width: 80px;
