@@ -6,12 +6,22 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
-var typeCentres = {
-	Αλλοδαποί: {x: w / 3.65, y: h / 2.3},
-	Ημεδαποί: {x: w / 1.15, y: h / 1.9}
-};
+var partyCentres = { 
+    con: { x: w / 3, y: h / 3.3}, 
+    lab: {x: w / 3, y: h / 2.3}, 
+    lib: {x: w / 3	, y: h / 1.8}
+  };
 
-var fill = d3.scale.ordinal().range(["#122f3c", "bdbf04", "#88979d"]);
+var entityCentres = { 
+    company: {x: w / 3.65, y: h / 2.3},
+		union: {x: w / 3.65, y: h / 1.8},
+		other: {x: w / 1.15, y: h / 1.9},
+		society: {x: w / 1.12, y: h  / 3.2 },
+		pub: {x: w / 1.8, y: h / 2.8},
+		individual: {x: w / 3.65, y: h / 3.3},
+	};
+
+var fill = d3.scale.ordinal().range(["#F02233", "#087FBD", "#FDBB30"]);
 
 var svgCentre = { 
     x: w / 3.6, y: h / 2
@@ -31,6 +41,41 @@ var tooltip = d3.select("#chart")
 
 var comma = d3.format(",.0f");
 
+function transition(name) {
+	if (name === "all-donations") {
+		$("#initial-content").fadeIn(250);
+		$("#value-scale").fadeIn(1000);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-source-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		return total();
+		//location.reload();
+	}
+	if (name === "group-by-party") {
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-source-type").fadeOut(250);
+		$("#view-party-type").fadeIn(1000);
+		return partyGroup();
+	}
+	if (name === "group-by-donor-type") {
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeOut(250);
+		$("#view-donor-type").fadeIn(1000);
+		return donorType();
+	}
+	if (name === "group-by-money-source")
+		$("#initial-content").fadeOut(250);
+		$("#value-scale").fadeOut(250);
+		$("#view-donor-type").fadeOut(250);
+		$("#view-party-type").fadeOut(250);
+		$("#view-source-type").fadeIn(1000);
+		return fundsType();
+	}
+
 function start() {
 
 	node = nodeGroup.selectAll("circle")
@@ -38,20 +83,19 @@ function start() {
 	.enter().append("circle")
 		.attr("class", function(d) { return "node " + d.party; })
 		.attr("amount", function(d) { return d.value; })
-	
-		.attr("time", function(d){ return d.time})
+		.attr("donor", function(d) { return d.donor; })
+		.attr("entity", function(d) { return d.entity; })
+		.attr("party", function(d) { return d.party; })
+		// disabled because of slow Firefox SVG rendering
+		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
+		//.style("opacity", 0.9)
 		.attr("r", 0)
-		 .style("fill", function(d) {
-		 	if(d.time === '2017'){
-		 		return "red";
-		 	}
-		 	else if(d.time === '2016'){
-		 		return "green";
-			}
-		})
-	
+		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout);
+		// Alternative title based 'tooltips'
+		// node.append("title")
+		//	.text(function(d) { return d.donor; });
 
 		force.gravity(0)
 			.friction(0.75)
@@ -98,17 +142,6 @@ function fundsType() {
 		.start();
 }
 
-// gia ti nea katigoria Split by amount
-function amountType() {
-	
-	force.gravity(0)
-		.friction(0.85)
-		.charge(function(d) { return -Math.pow(d.radius, 2) / 2.5; })
-		.on("tick", amounts)
-		.start();
-}
-
-
 function parties(e) {
 	node.each(moveToParties(e.alpha));
 
@@ -130,16 +163,6 @@ function types(e) {
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
 }
-
-// gia tin nea katigoria Split by amount
-
-function amounts(e) {
-	node.each(moveToAmount(e.alpha));
-
-		node.attr("cx", function(d) { return d.x; })
-			.attr("cy", function(d) {return d.y; });
-}
-
 
 function all(e) {
 	node.each(moveToCentre(e.alpha))
@@ -218,30 +241,6 @@ function moveToFunds(alpha) {
 	};
 }
 
-// gia ti nea katigoria Split by amount
-function moveToAmount(alpha) {
-	return function(d) {
-		var centreX;
-		var centreY;
-		if (d.value <= 100000){
-			centreX = svgCentre.x +70;
-			centreY = svgCentre.y -70;
-		} else if (d.value <= 500000){
-			centreX = svgCentre.x +450;
-			centreY = svgCentre.y -70;
-		} else if (d.value <= 1000000){
-			centreX = svgCentre.x +70;
-			centreY = svgCentre.y +250;
-		} else {
-			centreX = svgCentre.x +500;
-			centreY = svgCentre.y +250;
-		}
-		
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	};
-}
-
 // Collision detection function by m bostock
 function collide(alpha) {
   var quadtree = d3.geom.quadtree(nodes);
@@ -296,7 +295,7 @@ function display(data) {
 				y: -y
       };
 			
-      nodes.push(node);
+      nodes.push(node)
 	});
 
 	console.log(nodes);
@@ -316,12 +315,29 @@ function mouseover(d, i) {
 	var party = d.partyLabel;
 	var entity = d.entityLabel;
 	var offset = $("svg").offset();
-	var infoBox = "<p> Source: <b>" + donor + "</b></p>"
-								+ "<p> Recipient: <b>" + party + "</b></p>"
+	
+
+
+	// image url that want to check
+	var imageFile = "https://raw.githubusercontent.com/ioniodi/D3js-uk-political-donations/master/photos/" + donor + ".ico";
+
+	
+	
+	// *******************************************
+	
+	
+	
+
+	
+
+	
+	var infoBox = "<p> Source: <b>" + donor + "</b> " +  "<span><img src='" + imageFile + "' height='42' width='42' onError='this.src=\"https://github.com/favicon.ico\";'></span></p>" 	
+	
+	 							+ "<p> Recipient: <b>" + party + "</b></p>"
 								+ "<p> Type of donor: <b>" + entity + "</b></p>"
 								+ "<p> Total value: <b>&#163;" + comma(amount) + "</b></p>";
-
-
+	
+	
 	mosie.classed("active", true);
 	d3.select(".tooltip")
   	.style("left", (parseInt(d3.select(this).attr("cx") - 80) + offset.left) + "px")
@@ -330,14 +346,6 @@ function mouseover(d, i) {
 			.style("display","block");
 	
 	
-// prosthiki omilias otan o xristis perna pano apo ton kiklo kapoiou doriti
-  omilia.text = donor + " for the " + party + " party" + amount + "pounds";
-  omilia.volume = 3;
-  omilia.rate = 0.5;
-  omilia.pitch = 1;
-
-  window.speechSynthesis.speak(omilia);   // on mouseover it speaks
-
 	}
 
 function mouseout() {
@@ -347,15 +355,14 @@ function mouseout() {
 		mosie.classed("active", false);
 
 		d3.select(".tooltip")
-			.style("display", "none"); 
+			.style("display", "none");
 		}
-
 
 $(document).ready(function() {
 		d3.selectAll(".switch").on("click", function(d) {
       var id = d3.select(this).attr("id");
       return transition(id);
     });
-    return d3.csv("stat.csv", display);
+    return d3.csv("data/7500up.csv", display);
 
 });
