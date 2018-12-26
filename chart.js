@@ -247,4 +247,5 @@ $(document).ready(function() {
     	});
     		return d3.csv("stat.csv", display);
 
+	
 });
