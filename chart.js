@@ -38,14 +38,20 @@ function start() {
 	.enter().append("circle")
 		.attr("class", function(d) { return "node " + d.party; })
 		.attr("amount", function(d) { return d.value; })
-		.attr("donor", function(d) { return d.donor; })
-		.attr("entity", function(d) { return d.entity; })
-		.attr("party", function(d) { return d.party; })
+	
+		.attr("time", function(d){ return d.time})
 		.attr("r", 0)
-		.style("fill", function(d) { return fill(d.party); })
+		 .style("fill", function(d) {
+		 	if(d.time === '2017'){
+		 		return "red";
+		 	}
+		 	else if(d.time === '2016'){
+		 		return "green";
+			}
+		})
+	
 		.on("mouseover", mouseover)
-		.on("mouseout", mouseout)
-			.text(function(d) { return d.donor; });
+		.on("mouseout", mouseout);
 
 		force.gravity(0)
 			.friction(0.75)
