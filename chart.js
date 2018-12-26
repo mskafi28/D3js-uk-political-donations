@@ -8,7 +8,7 @@ var radius = d3.scale.sqrt().range([10, 20]);
 
 var yearCentre = { 
     2017: { x: w / 3, y: h / 3.3}, 
-    2018: {x: w / 3	, y: h / 1.8}
+    2018: {x: w / 3, y: h / 1.8}
   };
 
 
