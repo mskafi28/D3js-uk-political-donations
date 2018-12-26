@@ -85,52 +85,20 @@ function total() {
 		.start();
 }
 
-function partyGroup() {
+function yearGroup() {
 	force.gravity(0)
-		.friction(0.8)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", parties)
+		.friction(0.9)
+		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 2.8; })
+		.on("tick", years)
 		.start()
-		.colourByParty();
-}
+	}
 
-function donorType() {
-	force.gravity(0)
-		.friction(0.8)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", entities)
-		.start();
-}
-
-function fundsType() {
-	force.gravity(0)
-		.friction(0.75)
-		.charge(function(d) { return -Math.pow(d.radius, 2.0) / 3; })
-		.on("tick", types)
-		.start();
-}
-
-function parties(e) {
-	node.each(moveToParties(e.alpha));
-
+function years(e){
+		node.each(moveToYears(e.alpha));
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
 }
 
-function entities(e) {
-	node.each(moveToEnts(e.alpha));
-
-		node.attr("cx", function(d) { return d.x; })
-			.attr("cy", function(d) {return d.y; });
-}
-
-function types(e) {
-	node.each(moveToFunds(e.alpha));
-
-
-		node.attr("cx", function(d) { return d.x; })
-			.attr("cy", function(d) {return d.y; });
-}
 
 function all(e) {
 	node.each(moveToCentre(e.alpha))
@@ -139,75 +107,24 @@ function all(e) {
 		node.attr("cx", function(d) { return d.x; })
 			.attr("cy", function(d) {return d.y; });
 }
-
-
-function moveToCentre(alpha) {
-	return function(d) {
-		var centreX = svgCentre.x + 75;
-			if (d.value <= 25001) {
-				centreY = svgCentre.y + 75;
-			} else if (d.value <= 50001) {
-				centreY = svgCentre.y + 55;
-			} else if (d.value <= 100001) {
-				centreY = svgCentre.y + 35;
-			} else  if (d.value <= 500001) {
-				centreY = svgCentre.y + 15;
-			} else  if (d.value <= 1000001) {
-				centreY = svgCentre.y - 5;
-			} else  if (d.value <= maxVal) {
-				centreY = svgCentre.y - 25;
-			} else {
-				centreY = svgCentre.y;
+	
+	
+	function moveToYears(alpha){
+		return function(d){
+		var centreX = 0, centreY = 0;
+			if (d.year === "2017"){
+				centreX = 400;
+				centreY = 250;
+			else {
+				centreX = 740;
+				centreY = 200;
 			}
-
-		d.x += (centreX - d.x) * (brake + 0.06) * alpha * 1.2;
-		d.y += (centreY - 100 - d.y) * (brake + 0.06) * alpha * 1.2;
-	};
-}
-
-function moveToParties(alpha) {
-	return function(d) {
-		var centreX = partyCentres[d.party].x + 50;
-		if (d.entity === 'pub') {
-			centreX = 1200;
-		} else {
-			centreY = partyCentres[d.party].y;
-		}
-
 		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
 		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
 	};
 }
 
-function moveToEnts(alpha) {
-	return function(d) {
-		var centreY = entityCentres[d.entity].y;
-		if (d.entity === 'pub') {
-			centreX = 1200;
-		} else {
-			centreX = entityCentres[d.entity].x;
-		}
 
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	};
-}
-
-function moveToFunds(alpha) {
-	return function(d) {
-		var centreY = entityCentres[d.entity].y;
-		var centreX = entityCentres[d.entity].x;
-		if (d.entity !== 'pub') {
-			centreY = 300;
-			centreX = 350;
-		} else {
-			centreX = entityCentres[d.entity].x + 60;
-			centreY = 380;
-		}
-		d.x += (centreX - d.x) * (brake + 0.02) * alpha * 1.1;
-		d.y += (centreY - d.y) * (brake + 0.02) * alpha * 1.1;
-	};
-}
 
 // Collision detection function by m bostock
 function collide(alpha) {
@@ -241,6 +158,10 @@ function collide(alpha) {
 }
 
 function display(data) {
+	
+	data.forEach(function(d, i){
+		d.Value = d.Value.replace(/[^\d\.\-]/g, "");
+	});
 
 	maxVal = d3.max(data, function(d) { return d.amount; });
 
@@ -253,12 +174,7 @@ function display(data) {
 		var node = {
 				radius: radiusScale(d.amount) / 5,
 				value: d.amount,
-				donor: d.donor,
-				party: d.party,
-				partyLabel: d.partyname,
-				entity: d.entity,
-				entityLabel: d.entityname,
-				color: d.color,
+				year: d.year,
 				x: Math.random() * w,
 				y: -y
       };
@@ -279,9 +195,7 @@ function mouseover(d, i) {
 	// tooltip popup
 	var mosie = d3.select(this);
 	var amount = mosie.attr("amount");
-	var donor = d.donor;
-	var party = d.partyLabel;
-	var entity = d.entityLabel;
+	var year = d.year;
 	var offset = $("svg").offset();
 	
 
@@ -328,9 +242,9 @@ function mouseout() {
 
 $(document).ready(function() {
 		d3.selectAll(".switch").on("click", function(d) {
-      var id = d3.select(this).attr("id");
-      return transition(id);
-    });
-    return d3.csv("data/7500up.csv", display);
+      		var id = d3.select(this).attr("id");
+      		return transition(id);
+    	});
+    		return d3.csv("stat.csv", display);
 
 });
