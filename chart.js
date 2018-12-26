@@ -6,22 +6,11 @@ var force, node, data, maxVal;
 var brake = 0.2;
 var radius = d3.scale.sqrt().range([10, 20]);
 
-var partyCentres = { 
-    con: { x: w / 3, y: h / 3.3}, 
-    lab: {x: w / 3, y: h / 2.3}, 
-    lib: {x: w / 3	, y: h / 1.8}
-  };
+var typeCentres = {
+	Αλλοδαποί: {x: w / 3.65, y: h / 2.3},
+	Ημεδαποί: {x: w / 1.15, y: h / 1.9}
+};
 
-var entityCentres = { 
-    company: {x: w / 3.65, y: h / 2.3},
-		union: {x: w / 3.65, y: h / 1.8},
-		other: {x: w / 1.15, y: h / 1.9},
-		society: {x: w / 1.12, y: h  / 3.2 },
-		pub: {x: w / 1.8, y: h / 2.8},
-		individual: {x: w / 3.65, y: h / 3.3},
-	};
-
-// allagi xromaton stis mpales me ta dedomena
 var fill = d3.scale.ordinal().range(["#122f3c", "bdbf04", "#88979d"]);
 
 var svgCentre = { 
@@ -42,56 +31,6 @@ var tooltip = d3.select("#chart")
 
 var comma = d3.format(",.0f");
 
-function transition(name) {
-	if (name === "all-donations") {
-		$("#initial-content").fadeIn(250);
-		$("#value-scale").fadeIn(1000);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-source-type").fadeOut(250);
-		$("#view-amount-type").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		return total();
-		//location.reload();
-	}
-	if (name === "group-by-party") {
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-source-type").fadeOut(250);
-		$("#view-amount-type").fadeOut(250);
-		$("#view-party-type").fadeIn(1000);
-		return partyGroup();
-	}
-	if (name === "group-by-donor-type") {
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeOut(250);
-		$("#view-amount-type").fadeOut(250);
-		$("#view-donor-type").fadeIn(1000);
-		return donorType();
-	}
-	
-	if (name === "group-by-amount") {
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-source-type").fadeOut(250);
-		$("#view-amount-type").fadeIn(1000);
-		return amountType();
-	}
-	
-	if (name === "group-by-money-source")
-		$("#initial-content").fadeOut(250);
-		$("#value-scale").fadeOut(250);
-		$("#view-donor-type").fadeOut(250);
-		$("#view-party-type").fadeOut(250);
-		$("#view-amount-type").fadeOut(250);
-		$("#view-source-type").fadeIn(1000);
-		return fundsType();
-	}
-
 function start() {
 
 	node = nodeGroup.selectAll("circle")
@@ -102,18 +41,11 @@ function start() {
 		.attr("donor", function(d) { return d.donor; })
 		.attr("entity", function(d) { return d.entity; })
 		.attr("party", function(d) { return d.party; })
-		// disabled because of slow Firefox SVG rendering
-		// though I admit I'm asking a lot of the browser and cpu with the number of nodes
-		//.style("opacity", 0.9)
 		.attr("r", 0)
 		.style("fill", function(d) { return fill(d.party); })
 		.on("mouseover", mouseover)
 		.on("mouseout", mouseout)
-		.on("click", SearchGoogle); // prosthiki sinartisis gia anazitisi sto google
-	
-		// Alternative title based 'tooltips'
-		// node.append("title")
-		//	.text(function(d) { return d.donor; });
+			.text(function(d) { return d.donor; });
 
 		force.gravity(0)
 			.friction(0.75)
@@ -372,7 +304,6 @@ function display(data) {
 
 function mouseover(d, i) {
 	// tooltip popup
-	var omilia = new SpeechSynthesisUtterance();   // prosthiki metavlitis gia omilia
 	var mosie = d3.select(this);
 	var amount = mosie.attr("amount");
 	var donor = d.donor;
@@ -405,25 +336,14 @@ function mouseover(d, i) {
 
 function mouseout() {
 	// no more tooltips
-		var omilia = new SpeechSynthesisUtterance();
 		var mosie = d3.select(this);
 
 		mosie.classed("active", false);
 
 		d3.select(".tooltip")
-			.style("display", "none");
-		
-		// pausi omilias otan o xristis fevgi apo ton kiklo tou doriti
-		window.speechSynthesis.cancel(omilia);  
+			.style("display", "none"); 
 		}
 
-//prosthiki sinartisis gia tin anazitisi sto google
-function SearchGoogle(d)
-{
-    var query = d.donor + " " + d.entity + " " + d.partyLabel + " party";
-    url ='http://www.google.com/search?q=' + query;
-    window.open(url,'_blank');
-}
 
 $(document).ready(function() {
 		d3.selectAll(".switch").on("click", function(d) {
