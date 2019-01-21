@@ -21,15 +21,6 @@ li {
     display: inline;
 }
 
-#mouseTrackingCrumbs{
-    padding: 5px;
-    position: fixed;
-    right: 0;
-    left: 500;
-    bottom: 0;
-    width: 80px;
-    overflow-y: auto;
-}
 
 /* prosthiki zoom  200% otan to pontiki perna pano apo keimeno*/
 p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
@@ -45,6 +36,15 @@ p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
 /* Initial appearance on load */
 #view-party-type, #view-donor-type, #view-source-type, #view-amount-type {
     display: none;
+}
+
+/* sidebar eikonon ton doriton */
+#images-sidebar {
+    position: absolute;
+    left: 1045px;
+    width: 288px;
+    height: 42px;
+    top: 106px;
 }
 
 /* View containers */
