@@ -38,15 +38,6 @@ p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
     display: none;
 }
 
-/* sidebar eikonon ton doriton */
-#images-sidebar {
-    position: absolute;
-    left: 1045px;
-    width: 288px;
-    height: 42px;
-    top: 106px;
-}
-
 /* View containers */
 #initial-content, #view-source-type {
     left: 650px;
