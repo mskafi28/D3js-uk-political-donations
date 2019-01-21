@@ -408,7 +408,17 @@ function mouseover(d, i) {
     .style("top", (parseInt(d3.select(this).attr("cy") - (d.radius+150)) + offset.top) + "px")
 		.html(infoBox)
 			.style("display","block");
-	$("#mouseTrackingCrumbs").prepend("<img src='" + imageFile +"' width='60' height='60' onError='this.src=\"https://github.com/favicon.ico\";' /><br/>");
+	
+	//prosthiki ikonas doriti stin akri tis othonis
+	if ((dlist.indexOf(donor) > -1) == false) {	//elegxos an o xristis exi perasi pali apo tin eikona tou sigkekrimenou doriti
+		var element = document.createElement("img");	
+		element.src = imageFile;	
+		element.setAttribute("height", "42");	//diastasis eikonas 42x42 pixels
+		element.setAttribute("width", "42");
+
+		document.getElementById("images-sidebar").appendChild(element);
+		dlist.push(donor);	
+}
 	
 	
 // prosthiki omilias otan o xristis perna pano apo ton kiklo kapoiou doriti
