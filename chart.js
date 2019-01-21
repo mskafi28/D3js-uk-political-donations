@@ -415,18 +415,13 @@ function mouseover(d, i) {
  	 omilia.rate = 0.75;
  	 omilia.pitch = 1;
 
-  window.speechSynthesis.speak(omilia);   // on mouseover it speaks
+  	window.speechSynthesis.speak(omilia);   // otan perna o xristis pano apo ton kiklo tou doriti ksekina i omilia
 	
-	//prosthiki ikonas doriti stin akri tis othonis
-	if ((dlist.indexOf(donor) > -1) == false) {	//elegxos an o xristis exi perasi pali apo tin eikona tou sigkekrimenou doriti
-		var element = document.createElement("img");	
-		element.src = imageFile;	
-		element.setAttribute("height", "42");	//diastasis eikonas 42x42 pixels
-		element.setAttribute("width", "42");
-
-		document.getElementById("images-sidebar").appendChild(element);
-		dlist.push(donor);	
-	}
+	var img = document.createElement("img");
+  	img.src = imageFile;
+  	img.width = 42;
+  	img.height = 42;
+	document.body.appendChild(img);
 }
 
 function mouseout() {
