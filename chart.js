@@ -132,7 +132,7 @@ function start() {
 			.duration(2500)
 			.attr("r", function(d) { return d.radius; });
 	
-		drawTotalPie();
+		
 }
 
 function total() {
@@ -409,6 +409,14 @@ function mouseover(d, i) {
 		.html(infoBox)
 			.style("display","block");
 	
+	// prosthiki omilias otan o xristis perna pano apo ton kiklo kapoiou doriti
+ 	 omilia.text = donor + " for the " + party + " party" + amount + "pounds";
+  	 omilia.volume = 3;
+ 	 omilia.rate = 1;
+ 	 omilia.pitch = 1;
+
+  window.speechSynthesis.speak(omilia);   // on mouseover it speaks
+	
 	//prosthiki ikonas doriti stin akri tis othonis
 	if ((dlist.indexOf(donor) > -1) == false) {	//elegxos an o xristis exi perasi pali apo tin eikona tou sigkekrimenou doriti
 		var element = document.createElement("img");	
@@ -418,18 +426,8 @@ function mouseover(d, i) {
 
 		document.getElementById("images-sidebar").appendChild(element);
 		dlist.push(donor);	
-}
-	
-	
-// prosthiki omilias otan o xristis perna pano apo ton kiklo kapoiou doriti
-  omilia.text = donor + " for the " + party + " party" + amount + "pounds";
-  omilia.volume = 3;
-  omilia.rate = 1;
-  omilia.pitch = 1;
-
-  window.speechSynthesis.speak(omilia);   // on mouseover it speaks
-
 	}
+}
 
 function mouseout() {
 	// no more tooltips
