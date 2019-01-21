@@ -87,11 +87,11 @@ p:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
     top: 110px;
 }
 #labour {
-    background: rgba(136,151,157, 0.8);
+    background: rgb(18, 47, 60);
     top: 330px;
 }
 #libdem {
-    background: rgba(219,223,225, 0.8);
+    background: rgb(136, 151, 157);
     top: 550px;
 }
 
